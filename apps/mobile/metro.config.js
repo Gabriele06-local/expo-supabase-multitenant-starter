@@ -4,6 +4,9 @@ const path = require("path");
 const projectRoot = __dirname;
 const workspaceRoot = path.resolve(projectRoot, "../..");
 
+// Ensure Expo Router knows where the app/ directory is (monorepo fix)
+process.env.EXPO_ROUTER_APP_ROOT = path.resolve(projectRoot, "app");
+
 const config = getDefaultConfig(projectRoot);
 
 config.watchFolders = [workspaceRoot];
