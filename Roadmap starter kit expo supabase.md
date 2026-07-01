@@ -83,9 +83,9 @@ Questa è la parte più preziosa del progetto: la trasformi dall'esperienza clie
 
 Scegline 2-3 che dimostrino pattern diversi, non servono tante:
 
-- [ ] Una Edge Function "server-side privileged" (es. invio invito, azione che richiede service role key e non può stare sul client).
-- [ ] Una Edge Function con integrazione esterna (es. invio email transazionale con Resend, o notifica push).
-- [ ] Documenta il pattern generale: quando usare RPC vs Edge Function vs query diretta con RLS.
+- [x] Una Edge Function "server-side privileged" (`invite-user`): verifica permessi via service role, crea invito bypassando RLS.
+- [x] Una Edge Function con integrazione esterna (`send-notification`): invio email via Resend (o fallback log).
+- [x] Documenta il pattern generale (`docs/ARCHITECTURE.md`): quando usare RPC vs Edge Function vs query diretta con RLS.
 
 ---
 
