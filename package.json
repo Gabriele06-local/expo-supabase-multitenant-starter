@@ -1,0 +1,19 @@
+{
+  "name": "expo-supabase-multitenant-starter",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mobile": "npm run dev --workspace=apps/mobile",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "format": "prettier --write \"**/*.{ts,tsx,json,css,md}\"",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:migrate": "supabase db push",
+    "db:types": "supabase gen types typescript --local > packages/supabase/src/database.types.ts",
+    "db:seed": "supabase db reset --linked",
+    "setup": "npm install && npm run db:migrate && npm run db:seed && npm run db:types"
+  }
+}

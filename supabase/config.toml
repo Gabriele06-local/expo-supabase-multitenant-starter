@@ -1,0 +1,12 @@
+[project]
+project_id = "expo-supabase-starter"
+org_id = ""
+
+[auth]
+enabled = true
+
+[analytics]
+enabled = false
+
+[functions]
+enabled = true

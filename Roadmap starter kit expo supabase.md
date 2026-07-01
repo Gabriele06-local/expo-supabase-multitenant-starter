@@ -47,7 +47,7 @@ Questa è la parte più preziosa del progetto: la trasformi dall'esperienza clie
 
 ## FASE 2 — Setup del monorepo (2-3 giorni)
 
-- [ ] Struttura consigliata (monorepo con workspace, es. Turborepo o semplice npm workspaces):
+- [x] Struttura consigliata (monorepo con workspace, es. Turborepo o semplice npm workspaces):
   ```
   /apps
     /mobile        → Expo app
@@ -60,9 +60,9 @@ Questa è la parte più preziosa del progetto: la trasformi dall'esperienza clie
     /migrations
     /functions     → Edge Functions
   ```
-- [ ] Configura Supabase CLI locale per migrazioni versionate (niente modifiche a mano da dashboard: tutto tracciato in `/migrations`).
-- [ ] Genera i tipi TypeScript automaticamente da Supabase (`supabase gen types typescript`) e integrali nel pacchetto condiviso.
-- [ ] Configura ESLint + Prettier + eventualmente Husky per pre-commit hook (fa curriculum: mostra attenzione alla qualità del codice, non solo funzionalità).
+- [x] Configura Supabase CLI locale per migrazioni versionate (niente modifiche a mano da dashboard: tutto tracciato in `/migrations`).
+- [x] Genera i tipi TypeScript automaticamente da Supabase (`supabase gen types typescript`) e integrali nel pacchetto condiviso (schema manuale in `shared-types`, script `npm run db:types` per auto-generazione).
+- [x] Configura ESLint + Prettier + Husky per pre-commit hook.
 
 ---
 

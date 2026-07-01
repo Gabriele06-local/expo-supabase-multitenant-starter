@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "expo-supabase-starter",
+    "slug": "expo-supabase-starter",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "scheme": "expo-supabase-starter",
+    "platforms": ["ios", "android"],
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.exposupabasestarter"
+    },
+    "android": {
+      "package": "com.example.exposupabasestarter"
+    }
+  }
+}
