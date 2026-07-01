@@ -33,9 +33,11 @@ Auth multi-ruolo, RLS pronte, onboarding organizzazione, Edge Functions — tutt
 ```bash
 git clone https://github.com/Gabriele06-local/expo-supabase-multitenant-starter.git
 cd expo-supabase-multitenant-starter
-./setup.sh
-npm run dev:mobile
+npm install --legacy-peer-deps      # prima volta
+npm run dev:mobile                  # avvia Expo da apps/mobile
 ```
+
+> Non usare `npx expo start` dalla root — usa sempre `npm run dev:mobile` o `cd apps/mobile && npx expo start`.
 
 Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [Supabase CLI](https://supabase.com/docs/guides/cli).
 
