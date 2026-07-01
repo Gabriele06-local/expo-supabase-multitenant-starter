@@ -1,40 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Stack, router } from "expo-router";
-import { supabase } from "supabase";
-import { Text, View } from "react-native";
-import type { Session } from "@supabase/supabase-js";
+import { View, Text, TouchableOpacity } from "react-native";
+import { useAuth } from "../../lib/AuthContext";
 import type { AppRole } from "shared-types";
-import { getMyMemberships } from "../../lib/membership";
+
+const roleTabs: { role: AppRole; label: string; routes: string[] }[] = [
+  { role: "owner", label: "Proprietario", routes: ["dashboard", "members", "locations"] },
+  { role: "admin", label: "Amministratore", routes: ["dashboard", "members", "locations"] },
+  { role: "staff", label: "Staff", routes: ["dashboard", "locations"] },
+  { role: "customer", label: "Cliente", routes: ["dashboard"] },
+];
 
 export default function AppLayout() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [role, setRole] = useState<AppRole | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { session, memberships, isLoading, signOut, userRole } = useAuth();
 
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) {
-        router.replace("/(auth)/login");
-        return;
-      }
-      setSession(session);
-      const memberships = await getMyMemberships();
-      const orgRole = memberships.find((m) => !m.location_id)?.role ?? null;
-      setRole(orgRole);
-      setLoading(false);
-    });
+    if (isLoading) return;
+    if (!session) {
+      router.replace("/(auth)/login");
+      return;
+    }
+    if (memberships.length === 0) {
+      router.replace("/(onboarding)/create-organization");
+    }
+  }, [isLoading, session, memberships]);
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        if (!session) router.replace("/(auth)/login");
-      }
-    );
-
-    return () => listener.subscription.unsubscribe();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text>Caricamento...</Text>
@@ -42,9 +33,23 @@ export default function AppLayout() {
     );
   }
 
+  if (!session || memberships.length === 0) {
+    return null;
+  }
+
   return (
     <Stack screenOptions={{ headerShown: true }}>
-      <Stack.Screen name="dashboard" options={{ title: "Dashboard" }} />
+      <Stack.Screen
+        name="dashboard"
+        options={{
+          title: "Dashboard",
+          headerRight: () => (
+            <TouchableOpacity onPress={signOut}>
+              <Text style={{ color: "#e74c3c", marginRight: 8 }}>Esci</Text>
+            </TouchableOpacity>
+          ),
+        }}
+      />
       <Stack.Screen name="members/index" options={{ title: "Membri" }} />
       <Stack.Screen name="locations/index" options={{ title: "Sedi" }} />
     </Stack>

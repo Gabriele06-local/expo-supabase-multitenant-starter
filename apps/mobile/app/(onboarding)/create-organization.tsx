@@ -1,53 +1,63 @@
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useState } from "react";
 import { router } from "expo-router";
+import { supabase } from "supabase";
 import { useAuth } from "../../lib/AuthContext";
 
-export default function RegisterScreen() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function CreateOrganizationScreen() {
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signUp } = useAuth();
+  const { refreshMemberships } = useAuth();
 
-  const handleRegister = async () => {
+  const handleCreate = async () => {
+    if (!name || !slug) {
+      Alert.alert("Errore", "Compila tutti i campi");
+      return;
+    }
     setLoading(true);
-    const error = await signUp(email, password);
+    const { error } = await supabase.rpc("create_organization", {
+      org_name: name,
+      org_slug: slug,
+    });
     setLoading(false);
     if (error) {
       Alert.alert("Errore", error.message);
       return;
     }
-    router.replace("/(onboarding)/create-organization");
+    await refreshMemberships();
+    router.replace("/(app)/dashboard");
   };
 
   return (
     <View style={{ flex: 1, justifyContent: "center", padding: 24 }}>
-      <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 24 }}>
-        Registrati
+      <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 8 }}>
+        Benvenuto!
+      </Text>
+      <Text style={{ color: "#666", marginBottom: 24 }}>
+        Crea la tua organizzazione per iniziare.
       </Text>
       <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
+        placeholder="Nome organizzazione"
+        value={name}
+        onChangeText={setName}
         style={{
           borderWidth: 1, borderColor: "#ccc", borderRadius: 8,
           padding: 12, marginBottom: 12,
         }}
       />
       <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
+        placeholder="Slug (es. la-mia-azienda)"
+        value={slug}
+        onChangeText={(t) => setSlug(t.toLowerCase().replace(/\s+/g, "-"))}
+        autoCapitalize="none"
         style={{
           borderWidth: 1, borderColor: "#ccc", borderRadius: 8,
           padding: 12, marginBottom: 24,
         }}
       />
       <TouchableOpacity
-        onPress={handleRegister}
+        onPress={handleCreate}
         disabled={loading}
         style={{
           backgroundColor: "#000", borderRadius: 8,
@@ -55,12 +65,12 @@ export default function RegisterScreen() {
         }}
       >
         <Text style={{ color: "#fff", fontWeight: "600" }}>
-          {loading ? "Registrazione..." : "Registrati"}
+          {loading ? "Creazione..." : "Crea organizzazione"}
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => router.back()}>
+      <TouchableOpacity onPress={() => router.push("/(onboarding)/accept-invite")}>
         <Text style={{ textAlign: "center", marginTop: 16, color: "#666" }}>
-          Hai già un account? Accedi
+          Hai un invito? Inserisci il token
         </Text>
       </TouchableOpacity>
     </View>

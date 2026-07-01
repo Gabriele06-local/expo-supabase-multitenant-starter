@@ -68,14 +68,14 @@ Questa è la parte più preziosa del progetto: la trasformi dall'esperienza clie
 
 ## FASE 3 — Autenticazione e onboarding (4-6 giorni)
 
-- [ ] Implementa il flusso di auth Supabase (email/password + eventualmente magic link) sia su mobile che web.
-- [ ] Costruisci il flusso di **onboarding organizzazione**:
+- [x] Implementa il flusso di auth Supabase (email/password + magic link) sia su mobile che web.
+- [x] Costruisci il flusso di **onboarding organizzazione**:
   1. Utente si registra
   2. Crea (o viene invitato in) un'organizzazione
   3. Viene assegnato un ruolo tramite `memberships`
-- [ ] Implementa il sistema di **inviti** (email con link, accettazione, creazione membership).
-- [ ] Gestisci il **routing condizionato per ruolo** in Expo (es. con Expo Router, gruppi di route protette).
-- [ ] Aggiungi gestione sessione robusta (refresh token, logout, persistenza).
+- [x] Implementa il sistema di **inviti** (accettazione con token tramite RPC `accept_invite`).
+- [x] Gestisci il **routing condizionato per ruolo** in Expo (Dashboard con azioni diverse per role).
+- [x] Aggiungi gestione sessione robusta (AuthContext, refresh token automatico, persistenza, logout).
 
 ---
 
