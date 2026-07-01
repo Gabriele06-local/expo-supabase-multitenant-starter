@@ -1,24 +1,28 @@
 import { View, Text, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { supabase } from "supabase";
-import { getMyMemberships } from "../../../lib/membership";
+import { useOrg } from "../../../lib/OrgContext";
+
+interface Location {
+  id: string;
+  name: string;
+  address: string | null;
+}
 
 export default function LocationsScreen() {
-  const [locations, setLocations] = useState<any[]>([]);
+  const { currentOrg } = useOrg();
+  const [locations, setLocations] = useState<Location[]>([]);
 
   useEffect(() => {
-    loadLocations();
-  }, []);
+    if (currentOrg) loadLocations();
+  }, [currentOrg]);
 
   const loadLocations = async () => {
-    const memberships = await getMyMemberships();
-    if (memberships.length === 0) return;
-
-    const orgId = memberships[0].organization_id;
+    if (!currentOrg) return;
     const { data } = await supabase
       .from("locations")
       .select("*")
-      .eq("organization_id", orgId);
+      .eq("organization_id", currentOrg.organization_id);
 
     if (data) setLocations(data);
   };

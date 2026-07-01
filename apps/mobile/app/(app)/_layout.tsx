@@ -2,17 +2,11 @@ import { useEffect } from "react";
 import { Stack, router } from "expo-router";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useAuth } from "../../lib/AuthContext";
-import type { AppRole } from "shared-types";
-
-const roleTabs: { role: AppRole; label: string; routes: string[] }[] = [
-  { role: "owner", label: "Proprietario", routes: ["dashboard", "members", "locations"] },
-  { role: "admin", label: "Amministratore", routes: ["dashboard", "members", "locations"] },
-  { role: "staff", label: "Staff", routes: ["dashboard", "locations"] },
-  { role: "customer", label: "Cliente", routes: ["dashboard"] },
-];
+import { useOrg } from "../../lib/OrgContext";
 
 export default function AppLayout() {
-  const { session, memberships, isLoading, signOut, userRole } = useAuth();
+  const { session, memberships, isLoading, signOut } = useAuth();
+  const { currentOrg } = useOrg();
 
   useEffect(() => {
     if (isLoading) return;
@@ -42,7 +36,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="dashboard"
         options={{
-          title: "Dashboard",
+          title: currentOrg?.organization_name ?? "Dashboard",
           headerRight: () => (
             <TouchableOpacity onPress={signOut}>
               <Text style={{ color: "#e74c3c", marginRight: 8 }}>Esci</Text>
@@ -51,6 +45,7 @@ export default function AppLayout() {
         }}
       />
       <Stack.Screen name="members/index" options={{ title: "Membri" }} />
+      <Stack.Screen name="members/invite/index" options={{ title: "Invita" }} />
       <Stack.Screen name="locations/index" options={{ title: "Sedi" }} />
     </Stack>
   );

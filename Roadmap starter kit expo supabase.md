@@ -93,10 +93,10 @@ Scegline 2-3 che dimostrino pattern diversi, non servono tante:
 
 Non serve costruire un'app finita, ma abbastanza da mostrare il pattern:
 
-- [ ] Dashboard base con dati filtrati per organizzazione/sede (dimostra RLS che funziona end-to-end)
-- [ ] Schermata gestione membri (lista, invito, cambio ruolo) — riusa direttamente esperienza da BarberHub Pro
-- [ ] Switch tra sedi/organizzazioni se l'utente ne ha più di una
-- [ ] Configurazione EAS Build pronta (profili dev/preview/production) documentata nel README
+- [x] Dashboard base con dati filtrati per organizzazione (statistiche membri/sedi via RLS), org switcher se multi-org
+- [x] Schermata gestione membri (lista, invito, cambio ruolo via RPC `change_membership_role`)
+- [x] Switch tra organizzazioni (OrgContext + org picker in dashboard)
+- [x] Configurazione EAS Build pronta (`apps/mobile/eas.json` con profili dev/preview/production) documentata nel README
 
 ---
 
