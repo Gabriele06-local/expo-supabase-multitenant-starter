@@ -115,11 +115,11 @@ Questo è ciò che distingue uno starter kit "usabile" da un repo qualsiasi:
 
 Per uno starter kit, la documentazione **è** il prodotto tanto quanto il codice.
 
-- [ ] `README.md` principale: cosa fa, screenshot/gif, quick start in meno di 5 minuti, stack usato, licenza.
-- [ ] `ARCHITECTURE.md`: spiega le decisioni (perché questo schema multi-tenant, perché queste RLS, tradeoff considerati).
-- [ ] `CONTRIBUTING.md`: come proporre modifiche, convenzioni di commit.
-- [ ] Diagramma architetturale (anche semplice, tipo Excalidraw esportato in PNG/SVG).
-- [ ] Sezione "Come estendere questo starter" (es. aggiungere pagamenti, aggiungere una nuova tabella con RLS).
+- [x] `README.md` principale: cosa fa, screenshot/gif, quick start in meno di 5 minuti, stack usato, licenza.
+- [x] `ARCHITECTURE.md`: spiega le decisioni (perché questo schema multi-tenant, perché queste RLS, tradeoff considerati).
+- [x] `CONTRIBUTING.md`: come proporre modifiche, convenzioni di commit.
+- [x] Diagramma architetturale (Mermaid in ARCHITECTURE.md + screenshot SVG placeholder).
+- [x] Sezione "Come estendere questo starter" (es. aggiungere pagamenti, aggiungere una nuova tabella con RLS).
 
 ---
 
