@@ -86,7 +86,7 @@ Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [
 
 ## Documentazione
 
-- [Architettura](docs/ARCHITECTURE.md) — schema, RLS, RPC vs Edge Functions, tradeoff, come estendere
+- [Architecture](docs/ARCHITECTURE.md) — schema, RLS, RPC vs Edge Functions, tradeoff, come estendere
 - [Contribuire](docs/CONTRIBUTING.md) — commit convention, PR, linee guida
 
 ## Licenza
