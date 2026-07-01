@@ -2,19 +2,14 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml)
-[![DB Tests](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/db-test.yml/badge.svg)](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/db-test.yml)
 [![Expo](https://img.shields.io/badge/Expo-52.0-000?logo=expo)](https://expo.dev)
 [![Supabase](https://img.shields.io/badge/Supabase-2.47-3ECF8E?logo=supabase)](https://supabase.com)
 [![Next.js](https://img.shields.io/badge/Next.js-15-000?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript)](https://typescriptlang.org)
 
-Boilerplate open source per costruire SaaS multi-sede/multi-tenant con **Expo** (mobile) + **Supabase**.
+Boilerplate per costruire SaaS multi-sede/multi-tenant con **Expo** (mobile) + **Supabase**.
 
-> Crea un progetto pubblicabile in giorni, non settimane. Auth multi-ruolo, RLS pronte, onboarding organizzazione, tutto funzionante.
-
----
-
-![Screenshot](docs/screenshot.svg)
-<!-- Sostituisci con screenshot reali dell'app in esecuzione -->
+Auth multi-ruolo, RLS pronte, onboarding organizzazione, Edge Functions — tutto funzionante.
 
 ---
 
@@ -23,128 +18,77 @@ Boilerplate open source per costruire SaaS multi-sede/multi-tenant con **Expo** 
 | Livello | Tecnologia |
 |---|---|
 | Mobile | Expo SDK 52 + Expo Router 4 |
-| Web | Next.js 15 (opzionale) |
+| Web (opzionale) | Next.js 15 |
 | Backend | Supabase (Postgres, Auth, RLS, Edge Functions) |
 | Linguaggio | TypeScript |
 | Monorepo | npm workspaces |
 | Lint/Format | ESLint + Prettier + Husky |
+| Test | Vitest |
+| CI | GitHub Actions (lint, typecheck, DB test) |
 
-## Quick start (5 minuti)
+## Quick start
 
 ```bash
-# 1. Clona
 git clone https://github.com/Gabriele06-local/expo-supabase-multitenant-starter.git
 cd expo-supabase-multitenant-starter
-
-# 2. Bootstrap automatico (richiede Node.js, Docker, Supabase CLI)
-#    Crea .env, installa dipendenze, avvia Supabase, migra, seed, genera tipi
 ./setup.sh
-
-# 3. Avvia l'app mobile
 npm run dev:mobile
 ```
 
-**Oppure passo per passo:**
-```bash
-cp .env.example .env.local
-npm install
-supabase start
-npm run db:migrate
-npm run db:seed
-npm run db:types
-npm run dev:mobile
-```
+Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [Supabase CLI](https://supabase.com/docs/guides/cli).
 
 ## Demo accounts
-
-Dopo aver eseguito `npm run db:seed`, sono disponibili:
 
 | Email | Password | Ruolo | Org |
 |---|---|---|---|
 | owner@acme.com | password123 | Owner | Acme Corp |
 | admin@acme.com | password123 | Admin | Acme Corp |
-| staff@acme.com | password123 | Staff (Branch North) | Acme Corp |
+| staff@acme.com | password123 | Staff | Acme Corp |
 | customer@acme.com | password123 | Customer | Acme Corp |
 | owner@globex.com | password123 | Owner | Globex Inc |
 
-## Struttura del progetto
+## Struttura
 
 ```
 /
 ├── apps/
-│   ├── mobile/                 → Expo (Router, auth, org switcher, CRUD membri/sedi)
-│   │   ├── app/(auth)/         → Login, registrazione
-│   │   ├── app/(onboarding)/   → Crea org, accetta invito
-│   │   └── app/(app)/          → Dashboard, membri, sedi
-│   └── web/                    → Next.js 15 (auth pages, dashboard server)
+│   ├── mobile/              → Expo (Router, auth, dashboard, CRUD membri/sedi)
+│   └── web/                 → Next.js 15 (auth pages, dashboard server)
 ├── packages/
-│   ├── supabase/               → Client Supabase condiviso
-│   ├── shared-types/           → Tipi TS (Database, entità, enum)
-│   └── shared-ui/              → Componenti RN condivisi (RoleBadge)
+│   ├── supabase/            → Client Supabase condiviso
+│   ├── shared-types/        → Tipi TypeScript (Database, entità, enum) + test
+│   └── shared-ui/           → Componenti RN (RoleBadge)
 ├── supabase/
-│   ├── migrations/             → 3 migrazioni versionate (schema, RLS, RPC)
-│   ├── functions/              → Edge Functions Deno (invite-user, send-notification)
-│   ├── seed.sql                → Dati demo realistici
-│   └── schema.dbml             → Diagramma ER (per dbdiagram.io)
-└── docs/
-    ├── ARCHITECTURE.md         → Decisioni architetturali e pattern
-    └── CONTRIBUTING.md         → Come contribuire
+│   ├── migrations/          → 3 migrazioni (schema, RLS, RPC)
+│   ├── functions/           → 2 Edge Functions (invite-user, send-notification)
+│   └── seed.sql             → Dati demo realistici
+├── .github/workflows/       → CI + DB test
+└── docs/                    → ARCHITETTURA, CONTRIBUTING
 ```
 
-## Comandi npm
+## Comandi
 
 | Comando | Descrizione |
 |---|---|
-| `npm run dev:mobile` | Avvia Expo dev server |
-| `npm run dev:web` | Avvia Next.js dev server |
-| `npm run lint` | ESLint su tutto il progetto |
-| `npm run format` | Prettier formattazione |
-| `npm run typecheck` | TypeScript type check |
-| `npm run test` | Vitest (test unitari) |
-| `npm run test:watch` | Vitest in watch mode |
-| `npm run db:start` | Avvia Supabase local stack |
-| `npm run db:stop` | Ferma Supabase local stack |
-| `npm run db:reset` | Resetta il DB e riesegue seed |
-| `npm run db:migrate` | Applica migrazioni |
-| `npm run db:seed` | Seed dati demo |
-| `npm run db:types` | Genera tipi TS da Supabase |
-| `npm run db:studio` | Apre Supabase Studio |
-| `npm run functions:serve` | Avvia Edge Functions localmente |
+| `npm run dev:mobile` | Avvia Expo |
+| `npm run dev:web` | Avvia Next.js |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier |
+| `npm run typecheck` | TypeScript |
+| `npm run test` | Vitest |
 | `npm run setup` | Bootstrap completo |
 
-## Edge Functions
+**Database:**
+`db:start` `db:stop` `db:reset` `db:migrate` `db:seed` `db:types` `db:studio`
 
-```bash
-# Sviluppo locale
-npm run functions:serve
-
-# Deploy su Supabase
-npm run functions:deploy invite-user
-npm run functions:deploy send-notification
-```
-
-## EAS Build
-
-```bash
-# Development (expo-dev-client)
-eas build --profile development --platform all
-
-# Preview (distribuzione interna)
-eas build --profile preview --platform all
-
-# Production (App Store / Play Store)
-eas build --profile production --platform all
-```
-
-Config: `apps/mobile/eas.json`
+**Edge Functions:**
+`functions:serve` `functions:deploy`
 
 ## Documentazione
 
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Decisioni su schema, RLS, RPC vs Edge Functions
-- [CONTRIBUTING.md](docs/CONTRIBUTING.md) — Come contribuire al progetto
-- [PLANNING.md](PLANNING.md) — Scope MVP e decisioni iniziali
-- [Roadmap](Roadmap%20starter%20kit%20expo%20supabase.md) — Stato avanzamento fasi
+- [Architettura](docs/ARCHITECTURE.md) — schema, RLS, RPC vs Edge Functions, tradeoff, come estendere
+- [Contribuire](docs/CONTRIBUTING.md) — commit convention, PR, linee guida
 
 ## Licenza
 
-MIT — usa, modifica, distribuisci liberamente.
+MIT
