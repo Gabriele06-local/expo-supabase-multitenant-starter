@@ -28,18 +28,18 @@
 
 Questa è la parte più preziosa del progetto: la trasformi dall'esperienza cliente-specifica in un modello riusabile.
 
-- [ ] Disegna lo schema minimo multi-tenant:
+- [x] Disegna lo schema minimo multi-tenant:
   - `organizations` (tenant principale)
   - `locations` (sedi, come in Leon Lab)
   - `memberships` (utente ↔ org/location ↔ ruolo) — è il cuore del sistema di permessi
   - `invites` (per onboarding nuovi utenti)
-- [ ] Scrivi le **RLS policy** per ogni tabella partendo da questi principi:
+- [x] Scrivi le **RLS policy** per ogni tabella partendo da questi principi:
   - Nessun accesso di default (deny by default)
   - Policy basate su `memberships`, non su ID hardcoded
   - Separazione netta tra policy di lettura, scrittura, update, delete
-- [ ] Scrivi **RPC functions** per le operazioni che RLS da sole non gestiscono bene (es. creare un invito, promuovere un utente).
-- [ ] **Testa le RLS** creando utenti fittizi con ruoli diversi e verificando manualmente in SQL che ognuno veda solo ciò che deve.
-- [ ] Documenta lo schema con un diagramma ER (puoi generarlo con dbdiagram.io o simili, o direttamente da Supabase Studio).
+- [x] Scrivi **RPC functions** per le operazioni che RLS da sole non gestiscono bene (es. creare un invito, promuovere un utente).
+- [ ] **Testa le RLS** creando utenti fittizi con ruoli diversi e verificando manualmente in SQL che ognuno veda solo ciò che deve. (da fare dopo setup Supabase locale)
+- [x] Documenta lo schema con un diagramma ER (DBML in `supabase/schema.dbml`).
 
 **Nota:** questa fase, se vuoi ampliarla in futuro, è anche il seme naturale per l'idea "tool di testing RLS" di cui parlavamo — puoi anche scrivere qui gli script di test come modulo riusabile a parte.
 
