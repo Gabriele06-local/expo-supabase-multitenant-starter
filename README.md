@@ -2,10 +2,10 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml)
-[![Expo](https://img.shields.io/badge/Expo-57-000?logo=expo)](https://expo.dev)
+[![Expo](https://img.shields.io/badge/Expo-54-000?logo=expo)](https://expo.dev)
 [![Supabase](https://img.shields.io/badge/Supabase-2.47-3ECF8E?logo=supabase)](https://supabase.com)
 [![Next.js](https://img.shields.io/badge/Next.js-15-000?logo=next.js)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript)](https://typescriptlang.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://typescriptlang.org)
 
 Boilerplate per costruire SaaS multi-sede/multi-tenant con **Expo** (mobile) + **Supabase**.
 
@@ -19,7 +19,7 @@ Auth multi-ruolo, RLS pronte, onboarding organizzazione, Edge Functions — tutt
 
 | Livello         | Tecnologia                                     |
 | --------------- | ---------------------------------------------- |
-| Mobile          | Expo SDK 57 + Expo Router 57                   |
+| Mobile          | Expo SDK 54 + Expo Router 6                    |
 | Web (opzionale) | Next.js 15                                     |
 | Backend         | Supabase (Postgres, Auth, RLS, Edge Functions) |
 | Linguaggio      | TypeScript                                     |
