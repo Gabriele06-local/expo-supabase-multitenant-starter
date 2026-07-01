@@ -9,16 +9,16 @@
 
 ## FASE 0 — Definizione e scope (1-2 giorni)
 
-- [ ] Scrivi in una nota (non ancora README) **chi è l'utente target**: dev che deve lanciare un SaaS multi-tenant in fretta e non vuole reinventare auth/RLS/onboarding.
-- [ ] Decidi lo **scope minimo vendibile** (MVP dello starter, non del prodotto finale). Suggerimento:
+- [x] Scrivi in una nota (non ancora README) **chi è l'utente target**: dev che deve lanciare un SaaS multi-tenant in fretta e non vuole reinventare auth/RLS/onboarding.
+- [x] Decidi lo **scope minimo vendibile** (MVP dello starter, non del prodotto finale). Suggerimento:
   - Autenticazione multi-ruolo (owner, admin sede, staff, utente finale)
   - Multi-tenancy vera (organizzazioni → sedi → utenti)
   - RLS pronte e testate per lo schema base
   - App mobile Expo con navigazione condizionata per ruolo
   - Edge Function di esempio (es. invito utente, invio notifica)
   - Script di seed dati demo
-- [ ] Decidi cosa **non** entra nell'MVP dello starter (es. pagamenti, chat realtime) — li segni come "esempi futuri" o plugin separati. Uno starter kit che fa tutto non lo mantiene nessuno.
-- [ ] Scegli la licenza (MIT è la scelta standard per starter kit, massimizza adozione).
+- [x] Decidi cosa **non** entra nell'MVP dello starter (es. pagamenti, chat realtime) — li segni come "esempi futuri" o plugin separati. Uno starter kit che fa tutto non lo mantiene nessuno.
+- [x] Scegli la licenza (MIT è la scelta standard per starter kit, massimizza adozione).
 
 **Perché questa fase conta per il CV:** dimostra capacità di scoping, non solo di scrivere codice. È la differenza tra "ho fatto un progetto" e "ho progettato un prodotto".
 
