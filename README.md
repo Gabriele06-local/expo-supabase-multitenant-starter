@@ -11,6 +11,8 @@ Boilerplate per costruire SaaS multi-sede/multi-tenant con **Expo** (mobile) + *
 
 Auth multi-ruolo, RLS pronte, onboarding organizzazione, Edge Functions — tutto funzionante.
 
+![Demo](docs/screenshot.svg)
+
 ---
 
 ## Stack
@@ -39,6 +41,8 @@ Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [
 
 ## Demo accounts
 
+⚠️  **Solo per sviluppo locale** — non deployare mai questi dati in produzione.
+
 | Email | Password | Ruolo | Org |
 |---|---|---|---|
 | owner@acme.com | password123 | Owner | Acme Corp |
@@ -63,7 +67,7 @@ Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [
 │   ├── functions/           → 2 Edge Functions (invite-user, send-notification)
 │   └── seed.sql             → Dati demo realistici
 ├── .github/workflows/       → CI + DB test
-└── docs/                    → ARCHITETTURA, CONTRIBUTING
+└── docs/                    → ARCHITECTURE, CONTRIBUTING
 ```
 
 ## Comandi
@@ -92,3 +96,15 @@ Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [
 ## Licenza
 
 MIT
+
+## Progetti che usano questo starter
+
+*Lasciati un issue o una PR per essere aggiunto alla lista.*
+
+---
+
+<p align="center">
+  <a href="https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/issues">Segnala un problema</a>
+  ·
+  <a href="https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/discussions">Discussioni</a>
+</p>
