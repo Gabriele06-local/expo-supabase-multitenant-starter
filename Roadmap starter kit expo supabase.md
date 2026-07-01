@@ -104,10 +104,10 @@ Non serve costruire un'app finita, ma abbastanza da mostrare il pattern:
 
 Questo è ciò che distingue uno starter kit "usabile" da un repo qualsiasi:
 
-- [ ] Script `setup.sh` o comando npm che fa tutto il bootstrap iniziale (env, migrazioni, seed) in un comando solo.
-- [ ] File `.env.example` completo e commentato.
-- [ ] Script di **seed dati demo** realistici (organizzazione fittizia, sedi, utenti con ruoli diversi) per poter testare subito senza inserire dati a mano.
-- [ ] Comandi npm chiari e documentati (`npm run dev`, `npm run db:reset`, `npm run db:seed`, ecc.)
+- [x] Script `setup.sh` + comando `npm run setup` che fa tutto il bootstrap (env, migrazioni, seed, tipi).
+- [x] File `.env.example` completo e commentato (valori local di default per Supabase local stack).
+- [x] Script di **seed dati demo** realistici: 2 org, 4 sedi, 5 utenti con ruoli diversi, 3 inviti pendenti.
+- [x] Comandi npm chiari e documentati (`npm run dev:mobile`, `npm run db:reset`, `npm run db:seed`, `npm run functions:serve`, ecc.)
 
 ---
 
