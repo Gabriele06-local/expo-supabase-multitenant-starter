@@ -125,11 +125,11 @@ Per uno starter kit, la documentazione **è** il prodotto tanto quanto il codice
 
 ## FASE 8 — Qualità e CI (2-3 giorni)
 
-- [ ] Aggiungi GitHub Actions basilari:
-  - Lint + typecheck su ogni PR
-  - (Opzionale, più avanzato) test automatici delle RLS policy contro un'istanza Supabase locale in CI
-- [ ] Badge nel README (build status, licenza, versione Expo/Next).
-- [ ] Se il tempo lo permette: qualche test unitario sulle funzioni di business logic più delicate (es. calcolo permessi).
+- [x] Aggiungi GitHub Actions basilari:
+  - Lint + typecheck su ogni PR (`ci.yml`)
+  - Test Supabase locale in CI (`db-test.yml`)
+- [x] Badge nel README (build status, licenza, versione Expo/Next/Supabase).
+- [x] Test unitari sulle funzioni di business logic (gerarchia ruoli in `shared-types/__tests__/roles.test.ts`).
 
 ---
 

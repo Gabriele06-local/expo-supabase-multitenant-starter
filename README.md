@@ -1,6 +1,8 @@
 # Expo + Supabase Multi-Tenant SaaS Starter
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml)
+[![DB Tests](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/db-test.yml/badge.svg)](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/db-test.yml)
 [![Expo](https://img.shields.io/badge/Expo-52.0-000?logo=expo)](https://expo.dev)
 [![Supabase](https://img.shields.io/badge/Supabase-2.47-3ECF8E?logo=supabase)](https://supabase.com)
 [![Next.js](https://img.shields.io/badge/Next.js-15-000?logo=next.js)](https://nextjs.org)
@@ -98,6 +100,8 @@ Dopo aver eseguito `npm run db:seed`, sono disponibili:
 | `npm run lint` | ESLint su tutto il progetto |
 | `npm run format` | Prettier formattazione |
 | `npm run typecheck` | TypeScript type check |
+| `npm run test` | Vitest (test unitari) |
+| `npm run test:watch` | Vitest in watch mode |
 | `npm run db:start` | Avvia Supabase local stack |
 | `npm run db:stop` | Ferma Supabase local stack |
 | `npm run db:reset` | Resetta il DB e riesegue seed |
