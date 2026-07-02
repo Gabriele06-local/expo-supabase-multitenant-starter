@@ -1,112 +1,44 @@
-# Expo + Supabase Multi-Tenant SaaS Starter
+# Expo + Supabase Multi-Tenant Starter
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/actions/workflows/ci.yml)
-[![Expo](https://img.shields.io/badge/Expo-54-000?logo=expo)](https://expo.dev)
-[![Supabase](https://img.shields.io/badge/Supabase-2.47-3ECF8E?logo=supabase)](https://supabase.com)
-[![Next.js](https://img.shields.io/badge/Next.js-15-000?logo=next.js)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://typescriptlang.org)
-
-Boilerplate per costruire SaaS multi-sede/multi-tenant con **Expo** (mobile) + **Supabase**.
-
-Auth multi-ruolo, RLS pronte, onboarding organizzazione, Edge Functions — tutto funzionante.
-
-![Demo](docs/screenshot.svg)
-
----
-
-## Stack
-
-| Livello         | Tecnologia                                     |
-| --------------- | ---------------------------------------------- |
-| Mobile          | Expo SDK 54 + Expo Router 6                    |
-| Web (opzionale) | Next.js 15                                     |
-| Backend         | Supabase (Postgres, Auth, RLS, Edge Functions) |
-| Linguaggio      | TypeScript                                     |
-| Monorepo        | npm workspaces                                 |
-| Lint/Format     | ESLint + Prettier + Husky                      |
-| Test            | Vitest                                         |
-| CI              | GitHub Actions (lint, typecheck, DB test)      |
+Boilerplate per SaaS multi-tenant con Expo + Supabase.
 
 ## Quick start
 
 ```bash
-git clone https://github.com/Gabriele06-local/expo-supabase-multitenant-starter.git
-cd expo-supabase-multitenant-starter
-npm install --legacy-peer-deps      # prima volta
-npm run dev:mobile                  # avvia Expo da apps/mobile
+npm install
+npx expo start
 ```
 
-> Non usare `npx expo start` dalla root — usa sempre `npm run dev:mobile` o `cd apps/mobile && npx expo start`.
+Prerequisiti: Node.js 22+, Expo Go (SDK 54).
 
-Prerequisiti: [Node.js](https://nodejs.org) 22+, [Docker](https://docker.com), [Supabase CLI](https://supabase.com/docs/guides/cli).
+## Supabase (opzionale per sviluppo locale)
+
+```bash
+supabase start
+supabase db push
+supabase db reset --linked
+```
+
+Crea `.env` con i tuoi valori Supabase (copia da `.env.example`).
 
 ## Demo accounts
 
-⚠️ **Solo per sviluppo locale** — non deployare mai questi dati in produzione.
+Solo per sviluppo locale — non deployare in produzione.
 
-| Email             | Password    | Ruolo    | Org        |
-| ----------------- | ----------- | -------- | ---------- |
-| owner@acme.com    | password123 | Owner    | Acme Corp  |
-| admin@acme.com    | password123 | Admin    | Acme Corp  |
-| staff@acme.com    | password123 | Staff    | Acme Corp  |
-| customer@acme.com | password123 | Customer | Acme Corp  |
-| owner@globex.com  | password123 | Owner    | Globex Inc |
+| Email | Password | Ruolo |
+|---|---|---|
+| owner@acme.com | password123 | Owner |
+| admin@acme.com | password123 | Admin |
+| staff@acme.com | password123 | Staff |
+| customer@acme.com | password123 | Customer |
+| owner@globex.com | password123 | Owner |
 
-## Struttura
+## Stack
 
-```
-/
-├── apps/
-│   ├── mobile/              → Expo (Router, auth, dashboard, CRUD membri/sedi)
-│   └── web/                 → Next.js 15 (auth pages, dashboard server)
-├── packages/
-│   ├── supabase/            → Client Supabase condiviso
-│   ├── shared-types/        → Tipi TypeScript (Database, entità, enum) + test
-│   └── shared-ui/           → Componenti RN (RoleBadge)
-├── supabase/
-│   ├── migrations/          → 3 migrazioni (schema, RLS, RPC)
-│   ├── functions/           → 2 Edge Functions (invite-user, send-notification)
-│   └── seed.sql             → Dati demo realistici
-├── .github/workflows/       → CI + DB test
-└── docs/                    → ARCHITECTURE, CONTRIBUTING
-```
-
-## Comandi
-
-| Comando              | Descrizione        |
-| -------------------- | ------------------ |
-| `npm run dev:mobile` | Avvia Expo         |
-| `npm run dev:web`    | Avvia Next.js      |
-| `npm run lint`       | ESLint             |
-| `npm run format`     | Prettier           |
-| `npm run typecheck`  | TypeScript         |
-| `npm run test`       | Vitest             |
-| `npm run setup`      | Bootstrap completo |
-
-**Database:**
-`db:start` `db:stop` `db:reset` `db:migrate` `db:seed` `db:types` `db:studio`
-
-**Edge Functions:**
-`functions:serve` `functions:deploy`
-
-## Documentazione
-
-- [Architecture](docs/ARCHITECTURE.md) — schema, RLS, RPC vs Edge Functions, tradeoff, come estendere
-- [Contribuire](docs/CONTRIBUTING.md) — commit convention, PR, linee guida
+- Expo SDK 54 + Expo Router
+- Supabase (Auth, RLS, Edge Functions)
+- TypeScript
 
 ## Licenza
 
 MIT
-
-## Progetti che usano questo starter
-
-_Lasciati un issue o una PR per essere aggiunto alla lista._
-
----
-
-<p align="center">
-  <a href="https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/issues">Segnala un problema</a>
-  ·
-  <a href="https://github.com/Gabriele06-local/expo-supabase-multitenant-starter/discussions">Discussioni</a>
-</p>
